@@ -1,17 +1,33 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "restaurant-info",
+  "version": "1.0.0",
+  "description": "restaurant info",
+  "author": "kaycheez",
+  "license": "none",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "generate-db": "node seed_data/databaseLoader.js"
   },
   "dependencies": {
+    "css-loader": "^1.0.0",
+    "express": "^4.16.3",
+    "faker": "^4.1.0",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.13",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "style-loader": "^0.23.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
   }
 }
