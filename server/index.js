@@ -18,18 +18,20 @@ app.get('/restaurant/:id/info', (req, res) => {
   });
 });
 
-// app.get('/restaurant/:id/suggestions', (req, res) => {
-//   db.getRestaurantInNeighborhood()
-// });
 
 
-// db.getRestaurantById('1', (error, result) => {
-//   if (error) {
-//     throw error;
-//   } else {
-//     console.log(result);
-//   }
-// });
+app.get('/restaurant/:id/suggestions', (req, res) => {
+  db.getRestaurantInNeighborhood(req.params.id, (err, restaurants) => {
+    if (error) {
+      throw error;
+    } else {
+      res.send(restaurants);
+    }
+  });
+});
+
+
+
 
 
 app.listen('1177', () => console.log('listening on elevenseventyseven'));
