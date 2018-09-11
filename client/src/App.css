@@ -1,0 +1,37 @@
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 314px 300px 500px 800px 750px;
+  grid-gap: 2em;
+  padding: 3em;
+  grid-template-areas: 
+  "header header header"
+  "zagat zagat sidebar"
+  "publication publication sidebar"
+  "reviews reviews sidebar"
+  "footer footer footer";
+}
+
+.carousel {
+  grid-area: header;
+}
+
+.zagat {
+  grid-area: zagat;
+}
+
+.publication {
+  grid-area: publication;
+}
+
+.info {
+  grid-area: sidebar;
+}
+
+.suggestions {
+  grid-area: footer;
+}
+
+.reviews {
+  grid-area: reviews;
+}
