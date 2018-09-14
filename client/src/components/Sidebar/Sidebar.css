@@ -1,4 +1,7 @@
 .Sidebar {
   background-color: white;
   padding: 24px 32px;
+  /* font: 15px 'Calibre-Regular'; */
+  font: 15px 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
