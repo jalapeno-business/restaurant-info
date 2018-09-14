@@ -1,12 +1,12 @@
 import React from 'react';
 import './Sidebar.css';
-import Hours from './Hours.jsx';
+import CurrentHours from './CurrentHours.jsx';
 
 const Sidebar = (props) => {
   return (
     <div className="Sidebar">
       <div>
-        <Hours times={props.info.times}/>
+        <CurrentHours times={props.info.times}/>
       </div>
       <div>
         {props.info.location ? props.info.location.address : 'Loading'}, San Francisco, CA 94112, USA 
