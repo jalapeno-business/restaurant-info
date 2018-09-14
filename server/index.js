@@ -21,17 +21,26 @@ app.get('/restaurant/:id/info', (req, res) => {
 
 
 app.get('/restaurant/:id/suggestions', (req, res) => {
-  db.getRestaurantInNeighborhood(req.params.id, (err, restaurants) => {
+  db.getRestaurantById(req.params.id, (error, result) => {
     if (error) {
       throw error;
     } else {
-      res.send(restaurants);
+      let neighborhood = result.businessInfo.location.neighborhood;
+      db.getRestaurantInNeighborhood(neighborhood, (err, restaurants) => {
+        if (err) {
+          throw err;
+        } else {
+          res.send(restaurants);
+        }
+      });
     }
   });
+}); 
+
+
+
+
+
+app.listen('1177', function() {
+  console.log('listening on elevenseventyseven');
 });
-
-
-
-
-
-app.listen('1177', () => console.log('listening on elevenseventyseven'));
