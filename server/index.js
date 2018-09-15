@@ -26,7 +26,8 @@ app.get('/restaurant/:id/suggestions', (req, res) => {
       throw error;
     } else {
       let neighborhood = result.businessInfo.location.neighborhood;
-      db.getRestaurantInNeighborhood(neighborhood, (err, restaurants) => {
+      let cuisine = result.details.cuisine;
+      db.getRestaurantInNeighborhood(neighborhood, cuisine, (err, restaurants) => {
         if (err) {
           throw err;
         } else {

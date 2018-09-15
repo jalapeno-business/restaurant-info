@@ -28,7 +28,7 @@ const getRestaurantById = (id, callback) => {
   );
 };
 
-const getRestaurantInNeighborhood = ((neighborhood, callback) => {
+const getRestaurantSuggestions = ((neighborhood, cuisine, callback) => {
   MongoClient.connect(
     url,
     { useNewUrlParser: true },
@@ -39,7 +39,12 @@ const getRestaurantInNeighborhood = ((neighborhood, callback) => {
       } else {
         console.log('success to the db');
         const mdb = db.db('zagat');
-        mdb.collection('restaurant').find({ businessInfo: {location: { neighborhood: neighborhood} } }, (error, restaurants) => {
+        mdb.collection('restaurant').find( { 
+          $and: [
+            { 'businessInfo.location.neighborhood': neighborhood },
+            { 'details.cuisine': cuisine }
+          ]
+        }.limit(6), (error, restaurants) => {
           if (error) {
             console.log('error getting restaurants');
             throw error;
