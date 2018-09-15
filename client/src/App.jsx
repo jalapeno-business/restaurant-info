@@ -43,11 +43,15 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="info">
-          <Sidebar info={this.state.restaurant ? this.state.restaurant.businessInfo : 'loading'} />
+          <Sidebar info={this.state.restaurant.businessInfo} />
           
         </div>
         <div className="suggestions">
-          <Suggestions />
+          <Suggestions 
+            cuisine={this.state.restaurant.details.cuisine} 
+            id={this.state.restaurant.id}
+            name={this.state.restaurant.businessInfo.name}
+          />
 
         </div>
         <div className="zagat">

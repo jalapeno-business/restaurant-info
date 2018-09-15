@@ -37,28 +37,64 @@ const getRestaurantSuggestions = ((neighborhood, cuisine, callback) => {
         console.log('error to the db');
         throw err;
       } else {
-        console.log('success to the db');
+        console.log('success to the db for suggestions');
         const mdb = db.db('zagat');
-        mdb.collection('restaurant').find( { 
+        mdb.collection('restaurants').find( { 
           $and: [
             { 'businessInfo.location.neighborhood': neighborhood },
             { 'details.cuisine': cuisine }
           ]
-        }.limit(6), (error, restaurants) => {
+        }).toArray((error, documents) => {
           if (error) {
-            console.log('error getting restaurants');
+            console.log('error converting to array');
             throw error;
           } else {
-            console.log('success getting restaurants');
-            callback(null, restaurants);
+            callback(null, documents);
           }
-        });
+        }
+        );
       }
     }
   );
 });
+//   MongoClient.connect(
+//     url,
+//     { useNewUrlParser: true },
+//     (err, db) => {
+//       if (err) {
+//         console.log('error to the db');
+//         throw err;
+//       } else {
+//         console.log('success to the db for suggestions');
+//         const mdb = db.db('zagat');
+//         mdb.collection('restaurant').find( { 
+//           $and: [
+//             { 'businessInfo.location.neighborhood': neighborhood },
+//             { 'details.cuisine': cuisine }
+//           ]
+//         }, (error, restaurants) => {
+//           if (error) {
+//             console.log('error getting restaurants');
+//             throw error;
+//           } else {
+//             console.log('success getting restaurants');
+//             console.log(restaurants.toArray((error, documents) => {
+//               if (error) {
+//                 console.log('error converting to array')
+//                 throw error;
+//               } else {
+//                 console.log(documents);
+//                 callback(null, documents);
+//               }
+//             }));
+//           }
+//         });
+//       }
+//     }
+//   );
+// });
 
 
 
 module.exports.getRestaurantById = getRestaurantById;
-module.exports.getRestaurantInNeighborhood = getRestaurantInNeighborhood;
+module.exports.getRestaurantSuggestions = getRestaurantSuggestions;
