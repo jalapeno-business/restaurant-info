@@ -32,19 +32,32 @@ export default class SuggestionPics extends React.Component {
       });
   }
 
+  renderPhotoBtn() {
+
+  }
+
 
   render() {
     let options = {
+      display: 'flex',
       width: '250px',
       height: '250px',
       backgroundSize: 'cover',
-      backgroundImage: `url(${this.props.photos[this.state.currentPic]})`
+      backgroundImage: `url(${this.props.photos[this.state.currentPic]})`,
+      alignItems: 'center',
+
     };
     
     return (
-      <div className="suggestion-pics" style={options}>
-        <button className="button" onClick={() => this.handlePrevBtn()}>&lt;</button>
-        <button className="button" onClick={() => this.handleNextBtn()}>&gt;</button>
+      <div style={options}>
+        {
+          this.props.photos.length > 1 && (
+            <div className="suggestion-pics">
+              <button className="button" onClick={() => this.handlePrevBtn()}>&lt;</button>
+              <button className="button" onClick={() => this.handleNextBtn()}>&gt;</button>
+            </div>
+          )
+        }  
       </div>
     );
   }
