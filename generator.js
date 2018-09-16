@@ -9,8 +9,9 @@ const tipsChoices = ['Breakfast', 'Lunch', 'Dinner', 'Private Seating', 'Outdoor
 // TODO
 const generatePhotos = (num) => {
   const photos = [];
+
   for (let i = 0; i <= num; i++) {
-    photos.push();
+    photos.push(`https://s3-us-west-1.amazonaws.com/food-zagat/images/food-${Math.floor(Math.random() * 59)}.jpg`);
   }
   return photos;
 };
@@ -108,7 +109,7 @@ const createRestaurant = function(id) {
       review: faker.random.number({ min: 1, max: 5 }),
     },
     publications: generatePublications(faker.random.number(5)),
-    photos: generatePhotos(faker.random.number(5)),
+    photos: generatePhotos(faker.random.number(6)),
     whatToOrder: generateWhatToOrder(faker.random.number(5)),
     reviews: generateReviews(faker.random.number(5)),
   };
