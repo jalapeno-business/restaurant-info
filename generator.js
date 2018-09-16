@@ -63,8 +63,8 @@ const generateTips = (num) => {
 };
 
 const createRestaurant = function(id) {
-  const weekdayStart = `${faker.random.number({ min: 7, max: 12 })}:00am`;
-  const weekdayEnd = `${faker.random.number({ min: 7, max: 12 })}:00pm`;
+  const weekdayStart = `${faker.random.number({ min: 7, max: 12 })}:00 AM`;
+  const weekdayEnd = `${faker.random.number({ min: 7, max: 12 })}:00 PM`;
   const companyName = faker.company.companyName();
   return {
     id: id,
@@ -74,17 +74,17 @@ const createRestaurant = function(id) {
         address: faker.address.streetAddress(),
         neighborhood: hoods[faker.random.number({ min: 0, max: 6 })],
       },
-      phone: faker.phone.phoneNumber(),
+      phone: faker.phone.phoneNumberFormat(),
       times: {
-        Sunday: [`${faker.random.number({ min: 8, max: 11 })}:00am`, `${faker.random.number({ min: 5, max: 8 })}:00pm`],
+        Sunday: [`${faker.random.number({ min: 8, max: 11 })}:00 AM`, `${faker.random.number({ min: 5, max: 8 })}:00 PM`],
         Monday: [weekdayStart, weekdayEnd],
         Tuesday: [weekdayStart, weekdayEnd],
         Wednesday: [weekdayStart, weekdayEnd],
         Thursday: [weekdayStart, weekdayEnd],
         Friday: [weekdayStart, weekdayEnd],
         Saturday: [
-          `${faker.random.number({ min: 8, max: 11 })}:00am`,
-          `${faker.random.number({ min: 5, max: 8 })}:00pm`,
+          `${faker.random.number({ min: 8, max: 11 })}:00 AM`,
+          `${faker.random.number({ min: 5, max: 8 })}:00 PM`,
         ],
       },
       email: faker.internet.email(companyName),

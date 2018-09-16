@@ -1,15 +1,46 @@
-const MongoClient = require('mongodb');
+const express = require('express');
+const app = express();
+const db = require('./db');
+const parser = require('body-parser');
 
-const url = 'mongodb://localhost:27017';
+app.use(express.static(__dirname + '/../client/dist')); 
 
-MongoClient.connect(
-  url,
-  { useNewUrlParser: true },
-  (err, client) => {
-    if (err) {
-      console.log('error to the db');
+app.use(parser.json());
+
+
+app.get('/restaurant/:id/info', (req, res) => {
+  db.getRestaurantById(req.params.id, (error, result) => {
+    if (error) {
+      throw error;
     } else {
-      console.log('success to the db');
-      client.close();
+      res.send(result);
     }
   });
+});
+
+
+
+app.get('/restaurant/:id/suggestions', (req, res) => {
+  db.getRestaurantById(req.params.id, (error, result) => {
+    if (error) {
+      throw error;
+    } else {
+      let neighborhood = result.businessInfo.location.neighborhood;
+      db.getRestaurantInNeighborhood(neighborhood, (err, restaurants) => {
+        if (err) {
+          throw err;
+        } else {
+          res.send(restaurants);
+        }
+      });
+    }
+  });
+}); 
+
+
+
+
+
+app.listen('1177', function() {
+  console.log('listening on elevenseventyseven');
+});
