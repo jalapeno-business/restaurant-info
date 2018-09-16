@@ -7,7 +7,7 @@ const Suggestion = (props) => {
   return (
     <div className="suggestion-template">
       <div className="suggestion-photo">
-        <SuggestionPics />
+        <SuggestionPics photos={props.restaurant.photos} />
       </div>
       <div className="suggestion-info">
         <SuggestionInfo restaurant={props.restaurant} />

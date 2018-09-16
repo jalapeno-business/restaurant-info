@@ -10,4 +10,5 @@
 
 .suggestion-info {
   grid-area: info;
+  background-color: white;
 }
