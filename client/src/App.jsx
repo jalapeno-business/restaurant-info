@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Sidebar from './components/Sidebar/Sidebar.jsx';
-import Suggestions from './components/Suggestions/Suggestions.jsx';
+import SuggestionsContainer from './components/Suggestions/SuggestionsContainer.jsx';
 import Zagat from './components/Dummy/Zagat.jsx';
 import Carousel from './components/Dummy/Carousel.jsx';
 import Publications from './components/Dummy/Publications.jsx';
@@ -47,7 +47,7 @@ class App extends React.Component {
           
         </div>
         <div className="suggestions">
-          <Suggestions 
+          <SuggestionsContainer 
             cuisine={this.state.restaurant.details.cuisine} 
             id={this.state.restaurant.id}
             name={this.state.restaurant.businessInfo.name}

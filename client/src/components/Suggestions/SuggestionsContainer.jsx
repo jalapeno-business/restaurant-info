@@ -1,8 +1,9 @@
 import React from 'react';
-import './Suggestions.css';
+import './SuggestionsContainer.css';
 import axios from 'axios';
+import Suggestion from './Suggestion.jsx';
 
-export default class Suggestions extends React.Component {
+export default class SuggestionsContainer extends React.Component {
   constructor(props) {
     super(props); 
     this.state = {
@@ -26,9 +27,14 @@ export default class Suggestions extends React.Component {
 
   render() {
     return (
-      <div className="Suggestions">
+      <div className="Suggestions-Container">
         <div>
         More {this.props.cuisine} Near {this.props.name}
+        </div>
+        <div className="Suggestions">
+          {this.state.suggestions.map((restaurant, index) => {
+            return <Suggestion key={index} restaurant={restaurant} />;
+          })}
         </div>
       </div>
     );

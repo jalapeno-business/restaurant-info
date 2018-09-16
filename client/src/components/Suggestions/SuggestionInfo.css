@@ -1,0 +1,9 @@
+.suggestion-categories {
+  display: flex;
+  flex-direction: row;
+}
+
+.suggestion-rating {
+  display: flex;
+  flex-direction: row;
+}

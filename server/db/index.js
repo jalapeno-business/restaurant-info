@@ -44,7 +44,7 @@ const getRestaurantSuggestions = ((neighborhood, cuisine, callback) => {
             { 'businessInfo.location.neighborhood': neighborhood },
             { 'details.cuisine': cuisine }
           ]
-        }).toArray((error, documents) => {
+        }).limit(6).toArray((error, documents) => {
           if (error) {
             console.log('error converting to array');
             throw error;
@@ -57,42 +57,6 @@ const getRestaurantSuggestions = ((neighborhood, cuisine, callback) => {
     }
   );
 });
-//   MongoClient.connect(
-//     url,
-//     { useNewUrlParser: true },
-//     (err, db) => {
-//       if (err) {
-//         console.log('error to the db');
-//         throw err;
-//       } else {
-//         console.log('success to the db for suggestions');
-//         const mdb = db.db('zagat');
-//         mdb.collection('restaurant').find( { 
-//           $and: [
-//             { 'businessInfo.location.neighborhood': neighborhood },
-//             { 'details.cuisine': cuisine }
-//           ]
-//         }, (error, restaurants) => {
-//           if (error) {
-//             console.log('error getting restaurants');
-//             throw error;
-//           } else {
-//             console.log('success getting restaurants');
-//             console.log(restaurants.toArray((error, documents) => {
-//               if (error) {
-//                 console.log('error converting to array')
-//                 throw error;
-//               } else {
-//                 console.log(documents);
-//                 callback(null, documents);
-//               }
-//             }));
-//           }
-//         });
-//       }
-//     }
-//   );
-// });
 
 
 
