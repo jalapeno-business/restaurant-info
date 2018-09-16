@@ -19,6 +19,8 @@
 .suggestion-name {
   font-size: 22px;
   color: #101820;
+  border-bottom: 1px solid #b70038;
+  transition: border-bottom .2s ease-in-out;
 }
 
 .zagat-logo {
@@ -51,4 +53,9 @@
 
 #suggestion-info div {
   margin: .2em 0em;
+}
+
+.underline {
+  border-bottom: 1px solid transparent;
+  transition: border-bottom .2s ease-in-out;
 }

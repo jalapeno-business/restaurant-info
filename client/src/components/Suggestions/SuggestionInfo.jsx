@@ -27,16 +27,19 @@ export default class SuggestionInfo extends React.Component {
     for (let i = 0; i < this.props.restaurant.details.dollarSigns; i++) {
       tempArray.push(0);
     }
-
     const spacerMargin = {
       margin: '0 3px',
     };
+    const suggestionName = 
+      this.props.isHovered ? 
+        'suggestion-name' :
+        'suggestion-name underline'; 
 
     return (
       <div id="suggestion-info">
-        <div className="suggestion-name">
+        <span className={suggestionName}>
           {this.props.restaurant.businessInfo.name}
-        </div>
+        </span>
         <div className="suggestion-categories">
           <span>{this.props.restaurant.details.cuisine}</span>
           <span style={spacerMargin}> · </span>
