@@ -27,30 +27,37 @@ export default class SuggestionInfo extends React.Component {
     for (let i = 0; i < this.props.restaurant.details.dollarSigns; i++) {
       tempArray.push(0);
     }
+
+    const spacerMargin = {
+      margin: '0 3px',
+    };
+
     return (
-      <div>
-        <div>
+      <div id="suggestion-info">
+        <div className="suggestion-name">
           {this.props.restaurant.businessInfo.name}
         </div>
         <div className="suggestion-categories">
           <span>{this.props.restaurant.details.cuisine}</span>
-          <span> · </span>
+          <span style={spacerMargin}> · </span>
           <span>{this.props.restaurant.businessInfo.location.neighborhood}</span>
-          <span> · </span>
+          <span style={spacerMargin}> · </span>
           <div>
             {tempArray.map((el, i) => {
-              return <span key={i}>1</span>;
+              return <span key={i}>$</span>;
             })}
           </div>
         </div>
         <div className="suggestion-rating">
-          <div>
-            <span>FOOD</span>
-            <span>{this.props.restaurant.zagatReview.review}</span>
+          <img className="zagat-logo" src={require('./icons/zagat_icon.png')} alt="zagat-logo" />
+          <div className="zagat-review-text">
+            <span>FOOD </span>
+            <span style={{ color: 'red' }}>{this.props.restaurant.zagatReview.review}</span>
           </div>
-          <span> | </span>
-          <div>
+          <img className="google-logo" src={require('./icons/google.png')} alt="google-logo" />
+          <div className="google-text">
             <span>{this.state.avgRating}</span>
+            <img className="stars" src={require('./icons/5stars.jpg')} alt="5stars" />
           </div>
         </div>
         <div>
