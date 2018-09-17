@@ -1,17 +1,38 @@
-.app {
-  background-color: #f1f1f2;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 314px 300px 500px 800px 750px;
-  grid-gap: 2em;
-  padding: 3em;
-  grid-template-areas: 
-  "header header header"
-  "zagat zagat sidebar"
-  "publication publication sidebar"
-  "reviews reviews sidebar"
-  "footer footer footer";
+@media (min-width: 500px) {
+  .app {
+    background-color: #f1f1f2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 314px 300px auto 500px 800px auto;
+    grid-gap: 2em;
+    padding: 3em;
+    grid-template-areas: 
+    "header"
+    "zagat"
+    "sidebar"
+    "publication"
+    "reviews"
+    "footer"
+  }
+}  
+
+@media (min-width: 700px) {
+  .app {
+    background-color: #f1f1f2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 314px 300px 500px 800px 750px;
+    grid-gap: 2em;
+    padding: 3em;
+    grid-template-areas: 
+    "header header header"
+    "zagat zagat sidebar"
+    "publication publication sidebar"
+    "reviews reviews sidebar"
+    "footer footer footer";
+  }
 }
+
 
 .carousel {
   grid-area: header;

@@ -9,8 +9,9 @@ const tipsChoices = ['Breakfast', 'Lunch', 'Dinner', 'Private Seating', 'Outdoor
 // TODO
 const generatePhotos = (num) => {
   const photos = [];
+
   for (let i = 0; i <= num; i++) {
-    photos.push();
+    photos.push(`https://s3-us-west-1.amazonaws.com/food-zagat/images/food-${Math.floor(Math.random() * 59)}.jpg`);
   }
   return photos;
 };
@@ -19,7 +20,7 @@ const generateReviews = (num) => {
   const generateReviews = [];
   for (let i = 0; i <= num; i++) {
     generateReviews.push({
-      name: faker.name.firstName() + ' ' + faker.name.lastName(),
+      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       date: faker.date.between('2012-01-01', '2015-12-31'),
       text: faker.lorem.paragraph(),
       profilePic: faker.image.people(),
@@ -62,12 +63,12 @@ const generateTips = (num) => {
   return [...tips];
 };
 
-const createRestaurant = function(id) {
+const createRestaurant = function (id) {
   const weekdayStart = `${faker.random.number({ min: 7, max: 12 })}:00 AM`;
   const weekdayEnd = `${faker.random.number({ min: 7, max: 12 })}:00 PM`;
   const companyName = faker.company.companyName();
   return {
-    id: id,
+    id,
     businessInfo: {
       name: companyName,
       location: {
@@ -108,7 +109,7 @@ const createRestaurant = function(id) {
       review: faker.random.number({ min: 1, max: 5 }),
     },
     publications: generatePublications(faker.random.number(5)),
-    photos: generatePhotos(faker.random.number(5)),
+    photos: generatePhotos(faker.random.number(6)),
     whatToOrder: generateWhatToOrder(faker.random.number(5)),
     reviews: generateReviews(faker.random.number(5)),
   };
@@ -124,6 +125,4 @@ while (count <= maxCount) {
 }
 
 const json = JSON.stringify(restaurants, null, 2);
-fs.writeFile(path.join(__dirname, 'seed_data', 'zagat-data.json'), json, 'utf8', () =>
-  console.log('Data generation done')
-);
+fs.writeFile(path.join(__dirname, 'seed_data', 'zagat-data.json'), json, 'utf8', () => console.log('Data generation done'));
