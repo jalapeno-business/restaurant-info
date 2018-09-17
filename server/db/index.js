@@ -24,7 +24,7 @@ const getRestaurantById = (id, callback) => {
           }
         });
       }
-    }
+    },
   );
 };
 
@@ -39,11 +39,11 @@ const getRestaurantSuggestions = ((neighborhood, cuisine, callback) => {
       } else {
         console.log('success to the db for suggestions');
         const mdb = db.db('zagat');
-        mdb.collection('restaurants').find( { 
+        mdb.collection('restaurants').find({
           $and: [
             { 'businessInfo.location.neighborhood': neighborhood },
-            { 'details.cuisine': cuisine }
-          ]
+            { 'details.cuisine': cuisine },
+          ],
         }).limit(6).toArray((error, documents) => {
           if (error) {
             console.log('error converting to array');
@@ -51,13 +51,11 @@ const getRestaurantSuggestions = ((neighborhood, cuisine, callback) => {
           } else {
             callback(null, documents);
           }
-        }
-        );
+        });
       }
-    }
+    },
   );
 });
-
 
 
 module.exports.getRestaurantById = getRestaurantById;

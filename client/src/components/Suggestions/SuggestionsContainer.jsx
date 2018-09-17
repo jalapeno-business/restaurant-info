@@ -1,42 +1,54 @@
 import React from 'react';
 import './SuggestionsContainer.css';
 import axios from 'axios';
-import Suggestion from './Suggestion.jsx';
+import PropTypes from 'prop-types';
+import Suggestion from './Suggestion';
 
 export default class SuggestionsContainer extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
-      suggestions: []
+      suggestions: [],
     };
+  }
 
+  componentDidMount() {
+    const { id } = this.props;
+    this.getSuggestions(id);
   }
 
   getSuggestions(id) {
     axios.get(`/restaurant/${id}/suggestions`)
       .then((response) => {
         this.setState({
-          suggestions: response.data
+          suggestions: response.data,
         });
       });
   }
 
-  componentDidMount() {
-    this.getSuggestions(this.props.id);
-  }
-
   render() {
+    const { cuisine, name } = this.props;
+    const { suggestions } = this.state;
     return (
       <div className="Suggestions-Container">
         <div>
-        More {this.props.cuisine} Near {this.props.name}
+        More
+          {cuisine}
+        Near
+          {name}
         </div>
         <div className="Suggestions">
-          {this.state.suggestions.map((restaurant, index) => {
-            return <Suggestion key={index} restaurant={restaurant} />;
-          })}
+          {suggestions.map(
+            restaurant => <Suggestion key={restaurant.id} restaurant={restaurant} />,
+          )}
         </div>
       </div>
     );
   }
 }
+
+SuggestionsContainer.propTypes = {
+  id: PropTypes.number.isRequired,
+  cuisine: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};

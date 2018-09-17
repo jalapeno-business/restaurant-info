@@ -20,7 +20,7 @@ const generateReviews = (num) => {
   const generateReviews = [];
   for (let i = 0; i <= num; i++) {
     generateReviews.push({
-      name: faker.name.firstName() + ' ' + faker.name.lastName(),
+      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       date: faker.date.between('2012-01-01', '2015-12-31'),
       text: faker.lorem.paragraph(),
       profilePic: faker.image.people(),
@@ -63,12 +63,12 @@ const generateTips = (num) => {
   return [...tips];
 };
 
-const createRestaurant = function(id) {
+const createRestaurant = function (id) {
   const weekdayStart = `${faker.random.number({ min: 7, max: 12 })}:00 AM`;
   const weekdayEnd = `${faker.random.number({ min: 7, max: 12 })}:00 PM`;
   const companyName = faker.company.companyName();
   return {
-    id: id,
+    id,
     businessInfo: {
       name: companyName,
       location: {
@@ -125,6 +125,4 @@ while (count <= maxCount) {
 }
 
 const json = JSON.stringify(restaurants, null, 2);
-fs.writeFile(path.join(__dirname, 'seed_data', 'zagat-data.json'), json, 'utf8', () =>
-  console.log('Data generation done')
-);
+fs.writeFile(path.join(__dirname, 'seed_data', 'zagat-data.json'), json, 'utf8', () => console.log('Data generation done'));
