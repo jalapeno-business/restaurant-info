@@ -1,80 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Hours extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      extend: false,
-      day: 'Sunday',
-      time: '12:00 AM',
-      isOpen: false,
-    };
+const Hours = (props) => {
+  const { day, businessHours, currDay } = props;
+  const openHours = (
+    <div>
+      {day}
+      -
+      {businessHours[0]}
+      -
+      {businessHours[1]}
+    </div>
+  );
+  return (
+    currDay === day
+      ? <b>{openHours}</b>
+      : openHours
+  );
+};
 
-    this.handleClick = this.handleClick.bind(this);
-    this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  }
+Hours.propTypes = {
+  day: PropTypes.string.isRequired,
+  businessHours: PropTypes.string.isRequired,
+  currDay: PropTypes.string.isRequired,
+};
 
-  handleClick() {
-    this.setState({
-      extend: !this.state.extend 
-    });
-  }
-
-  updateDate() {
-    const date = new Date();
-    const dayOptions = {weekday: 'long'};
-    const timeOptions = {hour: 'numeric', minute: '2-digit'};
-
-    this.setState({
-      day: date.toLocaleDateString(date, dayOptions),
-      time: date.toLocaleTimeString()
-    });
-  }
-
-  checkOpenStatus(currentDayTimes) {
-    if (currentDayTimes !== 'Loading') {
-      let regexFindHour = /(\d+):/;
-      let currTimeHour = this.state.time.match(regexFindHour);
-      if (this.state.time.includes('AM')) {
-        let amOpeningHour = currentDayTimes[0].match(regexFindHour);
-        if (+currTimeHour[1] > +amOpeningHour[1]) {
-          this.setState({
-            isOpen: true,
-          });
-        }
-      }
-      if (this.state.time.includes('PM')) {
-        let pmOpeningHour = currentDayTimes[1].match(regexFindHour);
-        if (+currTimeHour[1] < +pmOpeningHour[1]) {
-          this.setState({
-            isOpen: true,
-          });
-        }
-      }
-    }
-  }
-  
-
-  componentDidMount() {
-    this.updateDate();
-    this.checkOpenStatus(this.props.times[this.state.day]);
-  }
-
-  render() {
-    const currentDayTimes = this.props.times[this.state.day];
-    const openNow = <div><b>Open Now</b> · {currentDayTimes[0]} - {currentDayTimes[1]} </div>;
-    const nextDay = this.days[this.days.findIndex(day => day === this.state.day) + 1];
-    const openTom = <div><b>Closed Now</b> · Opens {nextDay} at {this.props.times[nextDay][0]} </div>;
-  
-    return (
-      <div onClick={() => this.handleClick()}>
-        {this.state.isOpen ? openNow : openTom}
-        {
-          this.state.extend && (
-            <div>EXTENDED</div>
-          )
-        }
-      </div>
-    );
-  }
-}
+export default Hours;
