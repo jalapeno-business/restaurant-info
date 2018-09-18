@@ -1,0 +1,22 @@
+.Sidebar {
+  background-color: white;
+  padding: 24px 32px;
+  font: 10px;
+  position: sticky;
+  top: 2em;
+}
+
+.sidebar-lines {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.sidebar-text {
+  padding: 6px 0;
+}
+
+.icon {
+  height: 22px;
+  margin: 4px 24px 4px 0;
+}
